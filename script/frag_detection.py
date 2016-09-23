@@ -31,7 +31,7 @@ def encode_features(data,freq_required=1):
 		for y in x[0]:
 			features_count[y] += 1
 	features_set = [x for x in features_count.keys() if features_count[x]>=freq_required]
-	print "number of features: {}".format(len(features_set))
+	print( "number of features: {}".format(len(features_set)) )
 	return (features_set,encode_features_with_feature_set(data,features_set))
 
 def encode_features_with_feature_set(data,features_set):
@@ -44,7 +44,7 @@ def encode_features_with_feature_set(data,features_set):
 	return all_features_results
 
 def train_maxent(training_data):
-	print "training..."
+	print( "training..." )
 	features_set,all_features_results = encode_features(training_data,filter_threshold)
 	classifier = SklearnClassifier(LogisticRegression(C=1.0,class_weight='balanced'))
 	classifier.train(all_features_results)
@@ -66,19 +66,19 @@ def precision_recall_accuracy(counts):
 	else:
 		R = 0
 
-	print "# model: {}".format(m_count)
-	print "# test: {}".format(t_count)
-	print "# correct: {}".format(c_count)
-	print "# match: {}".format(a_count)
-	print "# all: {}".format(all_count)
+	print( "# model: {}".format(m_count) )
+	print( "# test: {}".format(t_count) )
+	print( "# correct: {}".format(c_count) )
+	print( "# match: {}".format(a_count) )
+	print( "# all: {}".format(all_count) )
 	print
-	print "P\tR"
-	print "{:.2f}\t{:.2f}".format(P, R)
-	print "A"
-	print "{:.2f}".format(float(float(a_count)/all_count))
+	print( "P\tR" )
+	print( "{:.2f}\t{:.2f}".format(P, R) )
+	print( "A" )
+	print( "{:.2f}".format(float(float(a_count)/all_count)) )
 
 def test_maxent(classifier,features_set,data):
-	print "testing..."
+	print( "testing..." )
 	
 	sig_out = []
 	t_count = 0
@@ -102,10 +102,10 @@ def test_maxent(classifier,features_set,data):
 		if print_error and model_result != system_result:
 			t_sentence = data[ind][4][:]
 			t_sentence[data[ind][3]] = '[' + t_sentence[data[ind][3]] + ']'
-			print ' '.join(t_sentence)
-			print 'model: ' + model_result
-			print 'system: ' + system_result
-			print [x for x in data[ind][0] if x in features_set]
+			print( ' '.join(t_sentence) )
+			print( 'model: ' + model_result )
+			print( 'system: ' + system_result )
+			print( [x for x in data[ind][0] if x in features_set] )
 			print
 		all_count += 1
 		if system_result == model_result:
@@ -118,12 +118,12 @@ def test_maxent(classifier,features_set,data):
 	return sig_out
 
 def test_maxent_prob(classifier,features_set,data):
-	print "testing..."
+	print( "testing..." )
 	sig_out = []
 	all_features_results = encode_features_with_feature_set(data,features_set)
 	system_results_ori = classifier.prob_classify_many([x[0] for x in all_features_results])
 	for t in prob_list:
-		print "Probability > {}".format(t)
+		print( "Probability > {}".format(t) )
 		t_count = 0
 		m_count = 0
 		c_count = 0
@@ -336,7 +336,7 @@ def process_files_whole_sentence(sentences,sentences_lpos,sentences_trees):
 	return all_instances
 
 def process_files(file_list,feature_function,filter_func=None,neg_pos_ratio=1,no_of_sentence=10000,start_from=0):
-	print "processing file {}...".format(file_list[0])
+	print( "processing file {}...".format(file_list[0]) )
 	sentences = open(file_list[0]).read().splitlines()
 	sentences_lpos = open(file_list[1].replace('.txt','_lpos.txt')).read().splitlines()
 	sentences_trees = stanford_parse.get_trees_from_raw(open(file_list[1].replace('.txt','_trees.txt')).read())
@@ -346,7 +346,7 @@ def process_files(file_list,feature_function,filter_func=None,neg_pos_ratio=1,no
 	return feature_function(sentences,sentences_lpos,sentences_trees)
 
 def process_training_files(file_list,feature_function,filter_func=None,neg_pos_ratio=1,no_of_sentence=10000,start_from=0,align=False):
-	print "processing file {}...".format(file_list[0])
+	print( "processing file {}...".format(file_list[0]) )
 	no_of_sentence_for_preprocess = 18000
 	sentences = open(file_list[0]).read().splitlines()
 	sentences_lpos = open(file_list[1].replace('.txt','_lpos.txt')).read().splitlines()
@@ -392,9 +392,9 @@ def process_training_files(file_list,feature_function,filter_func=None,neg_pos_r
 					else:
 						break
 	
-	print "Training data (filtered):"
-	print "no of pos: {}".format(len(filtered_all_instances))
-	print "no of neg: {}".format(len(neg_instances))
+	print( "Training data (filtered):" )
+	print( "no of pos: {}".format(len(filtered_all_instances)) )
+	print( "no of neg: {}".format(len(neg_instances)) )
 	filtered_all_instances += neg_instances
 	return filtered_all_instances
 
@@ -405,7 +405,7 @@ def training_data_filter(sentences,sentences_lpos,sentences_trees,neg_pos_ratio,
 	new_sentences_trees = []
 	no_of_pos = round(no_of_sentence/(neg_pos_ratio+1))
 	no_of_neg = round(no_of_pos * neg_pos_ratio)
-	print "Training data (preprocess):"
+	print( "Training data (preprocess):" )
 	count = 0
 	pos_count = 0
 	neg_count = 0
@@ -428,12 +428,12 @@ def training_data_filter(sentences,sentences_lpos,sentences_trees,neg_pos_ratio,
 				neg_count += 1
 		count += 1
 	
-	print "no of pos: {}".format(pos_count)
-	print "no of neg: {}".format(neg_count)	
-	print len(new_sentences)
-	print start_from
-	print count	
-	print start_from + count
+	print( "no of pos: {}".format(pos_count) )
+	print( "no of neg: {}".format(neg_count)	 )
+	print( len(new_sentences) )
+	print( start_from )
+	print( count	 )
+	print( start_from + count )
 	return (new_sentences,new_sentences_lpos,new_sentences_trees)
 
 def nucle_data_filter(sentences,sentences_lpos,sentences_trees,neg_pos_ratio,no_of_sentence,start_from):
@@ -443,9 +443,9 @@ def show_most_informative_features_binary(vectorizer, clf, n=20):
     feature_names = vectorizer.get_feature_names()
     coefs_with_fns = sorted(zip(clf.coef_[0], feature_names))
     top = zip(coefs_with_fns[:n], coefs_with_fns[:-(n + 1):-1])
-    print clf.classes_
+    print( clf.classes_ )
     for (coef_1, fn_1), (coef_2, fn_2) in top:
-        print "\t%.4f\t%-15s\t\t%.4f\t%-15s" % (coef_1, fn_1, coef_2, fn_2)
+        print( "\t%.4f\t%-15s\t\t%.4f\t%-15s" % (coef_1, fn_1, coef_2, fn_2) )
 
 if __name__ == '__main__':
 	
@@ -458,10 +458,10 @@ if __name__ == '__main__':
 	# pos_neg_ratio
 	r = 1
 	
-	print "ratio: {}".format(r)
-	print 'word: {}'.format(include_wordtrigram)
-	print 'pos: {}'.format(include_postrigram)
-	print 'node: {}'.format(include_nodetrigram)
+	print( "ratio: {}".format(r) )
+	print( 'word: {}'.format(include_wordtrigram) )
+	print( 'pos: {}'.format(include_postrigram) )
+	print( 'node: {}'.format(include_nodetrigram) )
 	all_instances = process_files(DATA['nucle_frag_f'],feauture_function,training_data_filter,neg_pos_ratio=r)
 	features_set,classifier = train_maxent(all_instances)
 	
