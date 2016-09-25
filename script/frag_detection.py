@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
+from collections import Counter
 from sklearn.linear_model import LogisticRegression
 from nltk.classify.scikitlearn import SklearnClassifier
 import stanford_parse
-from collections import Counter
 
 DATA = {}
 
