@@ -56,7 +56,7 @@ class Node:
 
     def search_children_recursive(self, l):
         out = self.search_children(l)
-        if out == None:
+        if out is None:
             for x in self.children:
                 temp = x.search_children_recursive(l)
                 if temp != None:
@@ -66,7 +66,7 @@ class Node:
 
     def match_children_recursive(self, l, find_last=False):
         out = self.match_children(l, find_last)
-        if out == None:
+        if out is None:
             for x in self.children:
                 temp = x.match_children_recursive(l)
                 if temp != None:
