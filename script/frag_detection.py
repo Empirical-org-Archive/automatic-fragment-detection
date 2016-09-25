@@ -25,7 +25,31 @@ best_ratio = {
 prob_list = [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95]
 
 
-FIND_HEAD_DICT = {'ADJP':(0,['NNS','QP','NN','ADVP','JJ','VBN','VBG','ADJP','JJR','NP','JJS','DT','FW','RBR','RBS','SBAR','RB']),'ADVP':(1,['RB','RBR','RBS','FW','ADVP','TO','CD','JJR','JJ','IN','NP','JJS','NN']),'CONJP':(1,['CC','RB','IN']),'FRAG':(1,[]),'INTJ':(0,[]),'LST':(1,['LS']),'NAC':(0,['NN','NNS','NNP','NNPS','NP','NAC','EX','CD','QP','PRP','VBG','JJ','JJS','JJR','ADJP','FW']),'PP':(1,['IN','TO','VBG','VBN','RP','FW']),'PRN':(0,[]),'PRT':(1,['RP']),'QP':(0,['$','IN','NNS','NN','JJ','RB','DT','CD','NCD','QP','JJR','JJS']),'RRC':(1,['VP','NP','ADVP','ADJP','PP']),'S':(0,['TO','IN','VP','S','SBAR','ADJP','UCP','NP']),'SBAR':(0,['WHNP','WHPP','WHADVP','WHADJP','IN','DT','S','SQ','SINV','SBAR','FRAG']),'SBARQ':(0,['SQ','S','SINV','SBARQ','FRAG']),'SINV':(0,['VBZ','VBD','VBP','VB','MD','VP','S','SINV','ADJP','NP']),'SQ':(0,['VBZ','VBD','VBP','VB','MD','VP','SQ']),'UCP':(1,[]),'VP':(0,['TO','VBD','VBN','MD','VBZ','VB','VBG','VBP','VP','ADJP','NN','NNS','NP']),'WHADJP':(0,['CC','WRB','JJ','ADJP']),'WHADVP':(1,['CC','WRB']),'WHNP':(0,['WDT','WP','WP$','WHADJP','WHPP','WHNP']),'WHPP':(1,['IN','TO','FW'])}
+FIND_HEAD_DICT = {
+    'ADJP': (0, ['NNS', 'QP', 'NN', 'ADVP', 'JJ', 'VBN', 'VBG', 'ADJP', 'JJR', 'NP', 'JJS', 'DT', 'FW', 'RBR', 'RBS', 'SBAR', 'RB']),
+    'ADVP': (1, ['RB', 'RBR', 'RBS', 'FW', 'ADVP', 'TO', 'CD', 'JJR', 'JJ', 'IN', 'NP', 'JJS', 'NN']),
+    'CONJP': (1, ['CC', 'RB', 'IN']),
+    'FRAG': (1, []),
+    'INTJ': (0, []),
+    'LST': (1, ['LS']),
+    'NAC': (0, ['NN', 'NNS', 'NNP', 'NNPS', 'NP', 'NAC', 'EX', 'CD', 'QP', 'PRP', 'VBG', 'JJ', 'JJS', 'JJR', 'ADJP', 'FW']),
+    'PP': (1, ['IN', 'TO', 'VBG', 'VBN', 'RP', 'FW']),
+    'PRN': (0, []),
+    'PRT': (1, ['RP']),
+    'QP': (0, ['$', 'IN', 'NNS', 'NN', 'JJ', 'RB', 'DT', 'CD', 'NCD', 'QP', 'JJR', 'JJS']),
+    'RRC': (1, ['VP', 'NP', 'ADVP', 'ADJP', 'PP']),
+    'S': (0, ['TO', 'IN', 'VP', 'S', 'SBAR', 'ADJP', 'UCP', 'NP']),
+    'SBAR': (0, ['WHNP', 'WHPP', 'WHADVP', 'WHADJP', 'IN', 'DT', 'S', 'SQ', 'SINV', 'SBAR', 'FRAG']),
+    'SBARQ': (0, ['SQ', 'S', 'SINV', 'SBARQ', 'FRAG']),
+    'SINV': (0, ['VBZ', 'VBD', 'VBP', 'VB', 'MD', 'VP', 'S', 'SINV', 'ADJP', 'NP']),
+    'SQ': (0, ['VBZ', 'VBD', 'VBP', 'VB', 'MD', 'VP', 'SQ']),
+    'UCP': (1, []),
+    'VP': (0, ['TO', 'VBD', 'VBN', 'MD', 'VBZ', 'VB', 'VBG', 'VBP', 'VP', 'ADJP', 'NN', 'NNS', 'NP']),
+    'WHADJP': (0, ['CC', 'WRB', 'JJ', 'ADJP']),
+    'WHADVP': (1, ['CC', 'WRB']),
+    'WHNP': (0, ['WDT', 'WP', 'WP$', 'WHADJP', 'WHPP', 'WHNP']),
+    'WHPP': (1, ['IN', 'TO', 'FW']),
+}
 
 convert_noun = False
 print_error = False
