@@ -50,7 +50,7 @@ class Node:
 
     def check_and_get_child(self, index, l):
         out = None
-        if len(self.children)>index and self.children[index].label in l:
+        if len(self.children) > index and self.children[index].label in l:
             out = self.children[index]
         return out
 
@@ -98,7 +98,7 @@ def search_tree(tree, word_list):
             is_word = False
             if word.strip() != '':
                 words.append(word.strip())
-                if len(target)> 0 and word == target[0]:
+                if len(target) > 0 and word == target[0]:
                     target.pop(0)
                     if len(target) == 0:
                         output2 = level[-1]
@@ -144,7 +144,7 @@ def search_label(tree, word_list):
             is_word = False
             if word.strip() != '':
                 words.append(word.strip())
-                if len(target)> 0 and word == target[0]:
+                if len(target) > 0 and word == target[0]:
                     target.pop(0)
                     if len(target) == 0:
                         output = out[level[-1]][0]
@@ -222,7 +222,7 @@ def convert_tree(tree, words):
         nodes[i].label = x[0]
         nodes[i].word_index = x[2]
         nodes[i].children = [nodes[k] for k in x[1]]
-        if len(word_indexes)>0 and x[2] == word_indexes[0] and len(x[1])==0:
+        if len(word_indexes) > 0 and x[2] == word_indexes[0] and len(x[1]) == 0:
             word_indexes.pop(0)
             nodes[i].word = temp_words.pop(0)
         for j, y in enumerate(x[1]):

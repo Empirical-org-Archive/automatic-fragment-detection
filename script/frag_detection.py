@@ -61,7 +61,7 @@ def encode_features(data, freq_required=1):
     for x in data:
         for y in x[0]:
             features_count[y] += 1
-    features_set = [x for x in features_count.keys() if features_count[x]>=freq_required]
+    features_set = [x for x in features_count.keys() if features_count[x] >= freq_required]
     print( "number of features: {}".format(len(features_set)) )
     return (features_set, encode_features_with_feature_set(data, features_set))
 
@@ -193,7 +193,7 @@ def find_head_of_NP(n):
     head = None
     n_children_reverse = n.children[:]
     n_children_reverse.reverse()
-    if len(n.children)>0:
+    if len(n.children) > 0:
         if n.children[-1].label == 'POS':
             head = n.children[-1]
         if not head:
@@ -286,9 +286,9 @@ def find_s(n, path):
         return (n, path)
 
 def get_trigram(i, l, prefix):
-    prev_t = l[i-1] if i-1>=0 else '<start>'
-    next_t = l[i+1] if i+1<len(l) else '<end>'
-    mid_t = l[i] if i<len(l) else '<mid>'
+    prev_t = l[i-1] if i-1 >= 0 else '<start>'
+    next_t = l[i+1] if i+1 < len(l) else '<end>'
+    mid_t = l[i] if i < len(l) else '<mid>'
     return (prefix + ':' + '_'.join([prev_t, mid_t, next_t]), [prev_t, mid_t, next_t])
 
 def process_files_whole_sentence(sentences, sentences_lpos, sentences_trees):
@@ -328,7 +328,7 @@ def process_files_whole_sentence(sentences, sentences_lpos, sentences_trees):
                         temp_trigram = []
                         temp_word_trigram = []
                         temp_node_trigram = []
-                        if i-1>=0:
+                        if i-1 >= 0:
                             temp_trigram.append(get_node_with_pos(s_node.children[i-1], lpos_all, tagger_output))
                             temp_word_trigram.append(get_node_with_pos(s_node.children[i-1], lpos_all, tagger_output, True))
                             temp_node_trigram.append(s_node.children[i-1])
@@ -338,7 +338,7 @@ def process_files_whole_sentence(sentences, sentences_lpos, sentences_trees):
                         temp_trigram.append(get_node_with_pos(s_node.children[i], lpos_all, tagger_output))
                         temp_word_trigram.append(get_node_with_pos(s_node.children[i], lpos_all, tagger_output, True))
                         temp_node_trigram.append(s_node.children[i])
-                        if i+1<len(s_node.children):
+                        if i+1 < len(s_node.children):
                             temp_trigram.append(get_node_with_pos(s_node.children[i+1], lpos_all, tagger_output))
                             temp_word_trigram.append(get_node_with_pos(s_node.children[i+1], lpos_all, tagger_output, True))
                             temp_node_trigram.append(s_node.children[i+1])
