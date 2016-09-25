@@ -12,7 +12,7 @@ class Node:
 		self.word_index = -100
 		self.id = ''
 
-	def search_self_and_younger_siblings(self,l):
+	def search_self_and_younger_siblings(self, l):
 		out = None
 		if self.label in l:
 			out = self
@@ -23,7 +23,7 @@ class Node:
 					break
 		return out
 		
-	def search_younger_siblings(self,l):
+	def search_younger_siblings(self, l):
 		out = None
 		for x in self.younger_siblings:
 			if x.label in l:
@@ -31,7 +31,7 @@ class Node:
 				break
 		return out	
 		
-	def search_children(self,l):		
+	def search_children(self, l):		
 		out = None
 		for x in self.children:
 			if x.label in l:
@@ -39,7 +39,7 @@ class Node:
 				break
 		return out
 		
-	def match_children(self,l,find_last = False):		
+	def match_children(self, l, find_last = False):		
 		out = None
 		for x in self.children:
 			if l in x.label:
@@ -48,13 +48,13 @@ class Node:
 					break
 		return out	
 		
-	def check_and_get_child(self,index,l):		
+	def check_and_get_child(self, index, l):		
 		out = None
 		if len(self.children)>index and self.children[index].label in l:
 			out = self.children[index]
 		return out	
 		
-	def search_children_recursive(self,l):		
+	def search_children_recursive(self, l):		
 		out = self.search_children(l)
 		if out == None:	
 			for x in self.children:
@@ -64,8 +64,8 @@ class Node:
 					break
 		return out
 
-	def match_children_recursive(self,l,find_last = False):		
-		out = self.match_children(l,find_last)
+	def match_children_recursive(self, l, find_last = False):		
+		out = self.match_children(l, find_last)
 		if out == None:	
 			for x in self.children:
 				temp = x.match_children_recursive(l)
@@ -76,7 +76,7 @@ class Node:
 		return out
 	
 		
-def search_tree(tree,word_list):
+def search_tree(tree, word_list):
 	target = word_list[:]
 	retrieve = False
 	out = []
@@ -109,7 +109,7 @@ def search_tree(tree,word_list):
 		elif is_label:
 			if x == ' ':
 				is_label = False
-				out.append([label,[],0,len(out)])
+				out.append([label, [], 0, len(out)])
 				if retrieve:
 					output = label
 					retrieve = False
@@ -123,7 +123,7 @@ def search_tree(tree,word_list):
 			word += x
 	return output2
 
-def search_label(tree,word_list):
+def search_label(tree, word_list):
 	target = word_list[:]
 	retrieve = False
 	out = []
@@ -155,7 +155,7 @@ def search_label(tree,word_list):
 		elif is_label:
 			if x == ' ':
 				is_label = False
-				out.append([label,[],0,len(out)])
+				out.append([label, [], 0, len(out)])
 				if retrieve:
 					output = label
 					retrieve = False
@@ -195,7 +195,7 @@ def parse_tree_with_words(tree):
 		elif is_label:
 			if x == ' ':
 				is_label = False
-				out.append([label,[],0])
+				out.append([label, [], 0])
 				if level[-2] >= 0:
 					out[level[-2]][1].append(len(out)-1)
 				label = ''
@@ -204,20 +204,20 @@ def parse_tree_with_words(tree):
 				label += x
 		elif is_word:
 			word += x
-	return (out,words)
+	return (out, words)
 
 
 def parse_tree(tree):
 	temp = parse_tree_with_words(tree)
-	return convert_tree(temp[0],temp[1])
+	return convert_tree(temp[0], temp[1])
 	
-def convert_tree(tree,words):
+def convert_tree(tree, words):
 	nodes = []
 	temp_words = words[:]
-	word_indexes = list(range(1,len(words)+1))
+	word_indexes = list(range(1, len(words)+1))
 	for x in tree:
 		nodes.append(Node())
-	for i,x in enumerate(tree):
+	for i, x in enumerate(tree):
 		nodes[i].id = i
 		nodes[i].label = x[0]
 		nodes[i].word_index = x[2]
@@ -225,7 +225,7 @@ def convert_tree(tree,words):
 		if len(word_indexes)>0 and x[2] == word_indexes[0] and len(x[1])==0:
 			word_indexes.pop(0)
 			nodes[i].word = temp_words.pop(0)
-		for j,y in enumerate(x[1]):
+		for j, y in enumerate(x[1]):
 			nodes[y].parent = i
 			nodes[y].parent_n = nodes[i]
 			nodes[y].elder_siblings = [nodes[k] for k in x[1][:j]]
@@ -238,7 +238,7 @@ def tree_sub_func(matchobj):
 def get_trees_from_raw(trees_raw, flat=True):
 	trees = trees_raw
 	if flat:
-		trees = trees.replace('\n','')
-	trees = re.sub(r"\(ROOT",tree_sub_func,trees)
+		trees = trees.replace('\n', '')
+	trees = re.sub(r"\(ROOT", tree_sub_func, trees)
 	trees = trees.split('|')[1:]
 	return trees
