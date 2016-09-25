@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 from sklearn.linear_model import LogisticRegression
 from nltk.classify.scikitlearn import SklearnClassifier
 import stanford_parse
