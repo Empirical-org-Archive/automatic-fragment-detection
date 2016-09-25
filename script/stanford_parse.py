@@ -39,7 +39,7 @@ class Node:
                 break
         return out
 
-    def match_children(self, l, find_last = False):
+    def match_children(self, l, find_last=False):
         out = None
         for x in self.children:
             if l in x.label:
@@ -64,7 +64,7 @@ class Node:
                     break
         return out
 
-    def match_children_recursive(self, l, find_last = False):
+    def match_children_recursive(self, l, find_last=False):
         out = self.match_children(l, find_last)
         if out == None:
             for x in self.children:
